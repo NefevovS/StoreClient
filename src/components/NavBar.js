@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { Context } from "../index";
 import {Container, Nav, Navbar} from "react-bootstrap";
 
-const Navigation = () => {
+const NavBar = () => {
   const { user } = useContext(Context);
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navigation.Brand href="#home">Navbar</Navigation.Brand>
+        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
@@ -18,4 +18,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default NavBar;

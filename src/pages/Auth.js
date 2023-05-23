@@ -1,11 +1,48 @@
-import React from 'react';
+import React from "react";
+import { Button, Card, Container, Form, Row } from "react-bootstrap";
+import { NavLink, useLocation } from "react-router-dom";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const Auth = () => {
-    return (
-        <div>
-            registration
-        </div>
-    );
+  const location = useLocation();
+  const isLogin = location.pathname === LOGIN_ROUTE;
+  return (
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: window.innerHeight - 54 }}
+    >
+      <Card style={{ width: "600px" }} className="p-5">
+        <h2 className="m-lg-auto">
+          {isLogin ? "Авторизация" : "Регистрация"}
+        </h2>
+        <Form className="d-flex flex-column">
+          <Form.Control placeholder="Введите email..." className="mt-3" />
+          <Form.Control
+            placeholder="Введите пароль..."
+            className="mt-3"
+            type="password"
+          />
+          <Row className="mt-3 d-flex justify-content-between pr-3 pl-3">
+            {isLogin ? (
+              <div>
+                Нет аккаунта?
+                <NavLink to={REGISTRATION_ROUTE}>зарегестрируйтесь</NavLink>
+              </div>
+            ) : (
+              <div>
+                Есть аккаунт?
+                <NavLink to={LOGIN_ROUTE}>войдите</NavLink>
+              </div>
+            )}
+
+            <Button variant="outline-success">
+              {isLogin ? "Войти" : "Регистрация"}
+            </Button>
+          </Row>
+        </Form>
+      </Card>
+    </Container>
+  );
 };
 
 export default Auth;

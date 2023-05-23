@@ -5,6 +5,9 @@ export default class DeviceStore {
         this._types = [
             {id: 1, name: "Холодильники"},
             {id: 2, name: "Телефоны"},
+            {id: 3, name: "Планшеты"},
+            {id: 4, name: "Аксессуары"},
+            {id: 5, name: "Компьютеры"},
         ];
         this._brands = [
             {id: 1, name: "Samsung"},
@@ -47,8 +50,17 @@ export default class DeviceStore {
                 img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
             },
         ];
+        this._selectedType={}
+        this._selectedBrand={}
           makeAutoObservable(this);
     }
+    setSelectedType(type){
+        this._selectedType=type
+    }
+    setSelectedBrand(brand){
+        this._selectedBrand=brand
+    }
+
     setTypes(types){
         this._types = types
     }
@@ -66,5 +78,11 @@ export default class DeviceStore {
     }
     get devices(){
         return this._devices
+    }
+    get selectedType(){
+        return this._selectedType
+    }
+    get selectedBrand(){
+        return this._selectedBrand
     }
 }

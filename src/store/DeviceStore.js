@@ -1,88 +1,67 @@
-import {makeAutoObservable} from "mobx";
+import { makeAutoObservable } from "mobx";
 
 export default class DeviceStore {
-    constructor() {
-        this._types = [
-            {id: 1, name: "Холодильники"},
-            {id: 2, name: "Телефоны"},
-            {id: 3, name: "Планшеты"},
-            {id: 4, name: "Аксессуары"},
-            {id: 5, name: "Компьютеры"},
-        ];
-        this._brands = [
-            {id: 1, name: "Samsung"},
-            {id: 2, name: "Apple"},
-        ];
-        this._devices = [
-            {
-                id: 1,
-                name: "Iphone 12 pro",
-                price: 25000,
-                rating: 5,
-                img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
-            },
-            {
-                id: 2,
-                name: "Iphone 12 pro",
-                price: 25000,
-                rating: 5,
-                img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
-            },
-            {
-                id: 3,
-                name: "Iphone 12 pro",
-                price: 25000,
-                rating: 5,
-                img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
-            },
-            {
-                id: 4,
-                name: "Iphone 12 pro",
-                price: 25000,
-                rating: 5,
-                img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
-            },
-            {
-                id: 5,
-                name: "Iphone 12 pro",
-                price: 25000,
-                rating: 5,
-                img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
-            },
-        ];
-        this._selectedType={}
-        this._selectedBrand={}
-          makeAutoObservable(this);
-    }
-    setSelectedType(type){
-        this._selectedType=type
-    }
-    setSelectedBrand(brand){
-        this._selectedBrand=brand
-    }
+  constructor() {
+    this._types = [];
+    this._brands = [];
+    this._devices = [];
+    this._selectedType = {};
+    this._selectedBrand = {};
+    this._page = 1;
+    this._totalCount = 0;
+    this._limit = 3;
 
-    setTypes(types){
-        this._types = types
-    }
-    setBrands(brands){
-        this._brands = brands
-    }
-    setDevices(devices){
-        this._devices = devices
-    }
-    get types(){
-        return this._types
-    }
-    get brands(){
-        return this._brands
-    }
-    get devices(){
-        return this._devices
-    }
-    get selectedType(){
-        return this._selectedType
-    }
-    get selectedBrand(){
-        return this._selectedBrand
-    }
+    makeAutoObservable(this);
+  }
+  setSelectedType(type) {
+    this._selectedType = type;
+  }
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand;
+  }
+
+  setTypes(types) {
+    this._types = types;
+  }
+  setBrands(brands) {
+    this._brands = brands;
+  }
+  setDevices(devices) {
+    this._devices = devices;
+  }
+  setPage(page) {
+    this._page = page;
+  }
+  setTotalCount(totalCount) {
+    this._totalCount = totalCount;
+  }
+  seLlimit(limit) {
+    this._limit = limit;
+  }
+
+  get types() {
+    return this._types;
+  }
+  get brands() {
+    return this._brands;
+  }
+  get devices() {
+    return this._devices;
+  }
+  get selectedType() {
+    return this._selectedType;
+  }
+  get selectedBrand() {
+    return this._selectedBrand;
+  }
+
+  get page() {
+    return this._page;
+  }
+  get totalCount() {
+    return this._totalCount;
+  }
+  get limit() {
+    return this._limit;
+  }
 }

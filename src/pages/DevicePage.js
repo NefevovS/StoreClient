@@ -1,56 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import bigStar from "../assets/big_star.png";
+import {useParams} from "react-router-dom";
+import {fetchDevices, fetchOneDevice} from "../http/deviceApi";
+
 const DevicePage = () => {
-  const device = {
-    id: 2,
-    name: "Iphone 12 pro",
-    price: 25000,
-    rating: 5,
-    img: "https://spb-apple.ru/image/cache/catalog/apple12/apple%2012%20pro%20max/apple12promax_grey_1-350x450.jpg",
-  };
-  const description = [
-    {
-      id: 1,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-    {
-      id: 2,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-    {
-      id: 3,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-    {
-      id: 4,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-    {
-      id: 5,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-    {
-      id: 6,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-    {
-      id: 7,
-      title: "Оперативная память",
-      description: "5 Гб",
-    },
-  ];
+ const [device,setDevice]=useState({info:[]})
+    const {id} = useParams()
+
+    useEffect(()=>{
+        fetchOneDevice(id).then((data)=>setDevice(data))
+    },[])
   return (
     <Container className="mt-2">
         <Row>
             <Col md={4}>
-                <Image src={device.img} width={300} height={300} />
+                <Image src={process.env.REACT_APP_API_URL+device.img} width={300} height={300} />
             </Col>
             <Col md={4}>
                 <Row className="d-flex flex-column align-items-center">
@@ -91,7 +56,7 @@ const DevicePage = () => {
 
       <Row className="d-flex flex-column m-3">
           <h1>Характеристики:</h1>
-        {description.map((des,index) => (
+        {device.info.map((des,index) => (
           <Row key={des.id} style={{background:index%2===0&&"lightgray",padding:10}}>
             {des.title}:{des.description}
           </Row>
